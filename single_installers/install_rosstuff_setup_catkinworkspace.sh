@@ -114,7 +114,7 @@ $ABSOLUTE_PATH/install_ws4py.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
 #$ABSOLUTE_PATH/install_crumb_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
 
 # install hector_quadrotor + libraries and dependencies
-#$ABSOLUTE_PATH/install_hector_quadrotor.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_hector_quadrotor.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
 
 # install SURF 2016 libraries and dependencies
 #$ABSOLUTE_PATH/install_SURF2016_deps.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
