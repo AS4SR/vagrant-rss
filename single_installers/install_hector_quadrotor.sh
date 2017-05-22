@@ -56,17 +56,22 @@ cd ~
 
 cd $WORKSPACEDIR/src
 if [ "$ROSVERSION" == "indigo" ]; then
-    sudo apt-get -y install ros-$ROSVERSION-hector-quadrotor-demo
+    sudo apt -y install ros-$ROSVERSION-hector-quadrotor-demo
 elif [ "$ROSVERSION" == "jade" ]; then # jade is untested
-    sudo apt-get -y install ros-$ROSVERSION-hector-quadrotor-demo
+    sudo apt -y install ros-$ROSVERSION-hector-quadrotor-demo
 elif [ "$ROSVERSION" == "kinetic" ]; then
     #sudo apt-get -y install ros-kinetic-hector-quadrotor-demo
     #sudo apt-get -y install ros-kinetic-hector-quadrotor-description ros-kinetic-hector-quadrotor-gazebo ros-kinetic-hector-quadrotor-teleop ros-kinetic-hector-quadrotor-gazebo-plugins
-    sudo apt-get -y install ros-$ROSVERSION-hector-localization ros-$ROSVERSION-hector-gazebo ros-$ROSVERSION-hector-models ros-$ROSVERSION-hector-slam
+    sudo apt -y install ros-$ROSVERSION-hector-localization ros-$ROSVERSION-hector-gazebo ros-$ROSVERSION-hector-models ros-$ROSVERSION-hector-slam
+    
+    # keyboard control interfaces
+    sudo apt -y install ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-keyboard
 
+    # rosinstall use:
+    rosinstall $WORKSPACEDIR/src /opt/ros/kinetic https://raw.githubusercontent.com/AS4SR/hector_quadrotor/kinetic-devel/tutorials.rosinstall
 
     # kinetic from source:
-    git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor.git
+    #git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor.git
     # run the hector_quadrotor.rosinstall file (see: http://wiki.ros.org/rosinstall
     #                                                http://answers.ros.org/question/9213/how-exactly-does-rosinstall-work/ )
     #sudo apt-get -y install python-rosinstall
@@ -74,20 +79,20 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
 
     # from the hector_quadrotor.rosinstall file:
     # (hector_quadrotor_pose_estimation requires hector_pose_estimation)
-    git clone -b catkin https://github.com/tu-darmstadt-ros-pkg/hector_localization.git
-    git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_gazebo.git
-    git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_models.git
+    #git clone -b catkin https://github.com/tu-darmstadt-ros-pkg/hector_localization.git
+    #git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_gazebo.git
+    #git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_models.git
     # additional from the tutorials.rosinstall file:
-    git clone -b catkin https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
+    #git clone -b catkin https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
 
     # hector_localization/hector_pose_estimation_core requires geographic_msgs
-    sudo apt-get -y install ros-$ROSVERSION-geographic-msgs
+    sudo apt -y install ros-$ROSVERSION-geographic-msgs
     # hector_quadrotor/hector_quadrotor_interface requires hardware_interface (part of ros_control)
-    sudo apt-get -y install ros-$ROSVERSION-hardware-interface
+    sudo apt -y install ros-$ROSVERSION-hardware-interface
     # hector_quadrotor/hector_quadrotor_interface requires controller_interface... (part of ros_control)
-    sudo apt-get -y install ros-$ROSVERSION-ros-control
+    sudo apt -y install ros-$ROSVERSION-ros-control
     # hector_quadrotor/hector_quadrotor_controller_gazebo requires gazebo-ros-control
-    sudo apt-get -y install ros-$ROSVERSION-gazebo-ros-control
+    sudo apt -y install ros-$ROSVERSION-gazebo-ros-control
 
     # not sure if requires gazebo7 build from scratch...
     #sudo apt-get -y install mercurial meld
@@ -100,9 +105,6 @@ fi
 #now, catkin_make this bad boy! :)
 su - $SCRIPTUSER -c "source /home/$SCRIPTUSER/.bashrc; cd $WORKSPACEDIR; source /opt/ros/$ROSVERSION/setup.bash; /opt/ros/$ROSVERSION/bin/catkin_make;"
 
-
-
-
 # note: trying to run the hector_quadrotor launch file(s) in VirtualBox VM...
 # gives the following error after not too long...
 #gzserver: /build/ogre-1.9-mqY1wq/ogre-1.9-1.9.0+dfsg1/OgreMain/src/OgreRenderSystem.cpp:546: virtual void Ogre::RenderSystem::setDepthBufferFor(Ogre::RenderTarget*): Assertion `bAttached && "A new DepthBuffer for a RenderTarget was created, but after creation" "it says it's incompatible with that RT"' failed.
@@ -112,8 +114,5 @@ su - $SCRIPTUSER -c "source /home/$SCRIPTUSER/.bashrc; cd $WORKSPACEDIR; source 
 #       https://bitbucket.org/osrf/gazebo/src/e08dcb5fe679f8d37857ba956d773fd80d3d7fb4/gazebo/rendering/Camera.cc?fileviewer=file-view-default#Camera.cc-1539 )
 # but, basically, this requires upgrading gazebo -- luckily, we can get newer packages from the gazebo ppa
 # ...unluckily, this doesn't seem to solve the issue under the VM
-
-
-
 
 echo "End of install_hector_quadrotor.sh script!"
