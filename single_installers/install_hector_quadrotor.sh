@@ -65,8 +65,16 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     sudo apt -y install ros-$ROSVERSION-hector-localization ros-$ROSVERSION-hector-gazebo ros-$ROSVERSION-hector-models ros-$ROSVERSION-hector-slam
     
     # keyboard control interfaces
-    sudo apt -y install ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-keyboard
+    sudo apt -y install ros-$ROSVERSION-joystick-drivers ros-$ROSVERSION-teleop-twist-keyboard
 
+    if [ "$FORCE" == "-f" ]; then
+        cd $WORKSPACEDIR/src
+        rm -rf hector_quadrotor
+        rm -rf hector_localization
+        rm -rf hector_gazebo
+        rm -rf hector_models
+    fi
+    
     # rosinstall use:
     rosinstall $WORKSPACEDIR/src /opt/ros/kinetic https://raw.githubusercontent.com/AS4SR/hector_quadrotor/kinetic-devel/tutorials.rosinstall
 
