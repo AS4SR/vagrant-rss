@@ -73,6 +73,7 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
         rm -rf hector_localization
         rm -rf hector_gazebo
         rm -rf hector_models
+        rm -rf hector_slam
     fi
     
     # rosinstall use:
