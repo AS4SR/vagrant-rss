@@ -36,7 +36,7 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install UWSim stuff -- tested in indigo only!
-cd $WORSPACEDIR/src
+cd $WORKSPACEDIR/src
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh python-urlgrabber ros-$ROSVERSION-uwsim libdc1394-22 libdc1394-22-dev libdc1394-utils
 if [ "$FORCE" == "-f" ]; then
     rm -rf freefloating_gazebo
@@ -48,7 +48,7 @@ fi
 if [ ! -d freefloating_gazebo_demo ]; then
     sudo -u $SCRIPTUSER git clone https://github.com/freefloating-gazebo/freefloating_gazebo_demo
 fi
-#su - $SCRIPTUSER -c "source /home/$SCRIPTUSER/.bashrc; cd $WORSPACEDIR; source /opt/ros/$ROSVERSION/setup.bash; /opt/ros/$ROSVERSION/bin/catkin_make;"
+#su - $SCRIPTUSER -c "source /home/$SCRIPTUSER/.bashrc; cd $WORKSPACEDIR; source /opt/ros/$ROSVERSION/setup.bash; /opt/ros/$ROSVERSION/bin/catkin_make;"
 #now, catkin_make this bad boy! :)
 su - $SCRIPTUSER -c "source /home/$SCRIPTUSER/.bashrc; cd $WORKSPACEDIR; source /opt/ros/$ROSVERSION/setup.bash; /opt/ros/$ROSVERSION/bin/catkin_make;"
 

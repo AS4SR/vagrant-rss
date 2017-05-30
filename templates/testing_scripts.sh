@@ -72,7 +72,7 @@ done
 scriptsarray1=(install_appropriate_ros_version.sh install_gazebo_plus_rospkgs.sh install_turtlebot_ros.sh trying install_p3dx_ros.sh set_up_catkin_workspace.sh trying install_MobileSim.sh install_ws4py.sh)
 for i in ${scriptsarray1[@]}; do
     echo "trying $i..."
-    $ABSOLUTE_PATH/single_installers/$i $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+    $ABSOLUTE_PATH/single_installers/$i $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
     echo "done trying $i..."
     read -rs -p "Press any key to continue..." -n 1 # reference: https://ss64.com/bash/read.html
     echo " "

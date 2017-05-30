@@ -60,10 +60,10 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install ROS indigo OR jade OR kinetic (for "ubuntu/trusty64" box)
-$ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install gazebo and gazebo-ros packages
-$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # note: this will install to the home directory of user $SCRIPTUSER
 # so, if this script is called as user 'vagrant'
@@ -72,13 +72,13 @@ $ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORSPACED
 # (technically /home/vagrant/catkin_ws and catkin_ws/src
 
 # directory should exist, but just to make sure...
-sudo -u $SCRIPTUSER mkdir -p $WORSPACEDIR/src
+sudo -u $SCRIPTUSER mkdir -p $WORKSPACEDIR/src
 
 # remove devel and build directories if exist already (want to catkin_make from scratch)
 if [ "$FORCE" == "-f" ]
 then
-    rm -rf $WORSPACEDIR/devel
-    rm -rf $WORSPACEDIR/build
+    rm -rf $WORKSPACEDIR/devel
+    rm -rf $WORKSPACEDIR/build
 fi
 
 # install gnome-terminal for multiscript*.py runs
@@ -88,39 +88,39 @@ $ABSOLUTE_PATH/check_pkg_status_and_install.sh gnome-terminal
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-rosbridge-server
 
 # install turtlebot libraries
-$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install (SD-Robot-Vision / ua_ros_p3dx) libraries for ./rss_git/contrib/p3dx_gazebo_mod
-$ABSOLUTE_PATH/install_p3dx_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_p3dx_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # set up catkin workspace
-$ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install ROSARIA (reference: http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA )
-$ABSOLUTE_PATH/install_ROSARIA.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_ROSARIA.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install deps for MobileSim and MobileSim (references: http://robots.mobilerobots.com/wiki/MobileSim and http://robots.mobilerobots.com/MobileSim/download/current/README.html )
-$ABSOLUTE_PATH/install_MobileSim.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_MobileSim.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install python WebSocket library (reference: https://ws4py.readthedocs.org/en/latest/sources/install/ )
-$ABSOLUTE_PATH/install_ws4py.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_ws4py.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install UWSim stuff
-#$ABSOLUTE_PATH/install_uwsim_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+#$ABSOLUTE_PATH/install_uwsim_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install USARSimROS + libraries
-#$ABSOLUTE_PATH/install_usarsim_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+#$ABSOLUTE_PATH/install_usarsim_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install CRUMBproject + libraries and dependencies
-#$ABSOLUTE_PATH/install_crumb_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+#$ABSOLUTE_PATH/install_crumb_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install hector_quadrotor + libraries and dependencies
-$ABSOLUTE_PATH/install_hector_quadrotor.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_hector_quadrotor.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install SURF 2016 libraries and dependencies
-#$ABSOLUTE_PATH/install_SURF2016_deps.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+#$ABSOLUTE_PATH/install_SURF2016_deps.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install WidowX stuff + libraries and dependencies
-#$ABSOLUTE_PATH/install_widowx_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+#$ABSOLUTE_PATH/install_widowx_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 echo "End of install_rosstuff_setup_catkinworkspace.sh script!"

@@ -34,7 +34,7 @@ if [ ! -f /opt/ros/$ROSVERSION/setup.bash ]; then # install the appropriate vers
 fi
 
 # need the -dev libraries of gazebo installed, and gazebo-proper, so also run:
-$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # if catkin_ws workspace isn't already set up:
 if [ ! -d $WORKSPACEDIR ]; then # set up the catkin workspace
