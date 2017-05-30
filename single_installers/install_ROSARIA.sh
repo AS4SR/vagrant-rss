@@ -95,21 +95,29 @@ fi
 if [ "$FORCE" == "-f" ] || [ $ARIA_FOUND -eq 0 ]
 then
     ARCH_NUM=`uname -m`
+    echo "UCODENAME=$UCODENAME"
+    echo "ARCH_NUM=$ARCH_NUM"
     if [ $UCODENAME == "trusty" ]; then # Ubuntu 14.04 LTS
-        if [ $ARCH_NUM == "x86_64" ]; then # 64-bit arch
+        if [ "$ARCH_NUM" == "x86_64" ]; then # 64-bit arch
             wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_amd64.deb
             sudo dpkg -i libaria_2.9.1+ubuntu12_amd64.deb
-        elif [ $ARCH_NUM == "i386" ]; then # 32-bit arch
+        elif [ "$ARCH_NUM" == "i386" ]; then # 32-bit arch
             wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_i386.deb
             sudo dpkg -i libaria_2.9.1+ubuntu12_i386.deb
+        else
+            echo "Unknown ARCH_NUM='$ARCH_NUM'"
+            exit 1
         fi
     elif [ $UCODENAME == "xenial" ]; then # Ubuntu 16.04 LTS
-        if [ $ARCH_NUM == "x86_64" ]; then # 64-bit arch
+        if [ "$ARCH_NUM" == "x86_64" ]; then # 64-bit arch
             wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu16_amd64.deb
             sudo dpkg -i libaria_2.9.1+ubuntu16_amd64.deb
-        elif [ $ARCH_NUM == "i386" ]; then # 32-bit arch
+        elif [" $ARCH_NUM" == "i386" ]; then # 32-bit arch
             wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu16_i386.deb
             sudo dpkg -i libaria_2.9.1+ubuntu16_i386.deb
+        else
+            echo "Unknown ARCH_NUM='$ARCH_NUM'"
+            exit 1
         fi
     fi
 fi
