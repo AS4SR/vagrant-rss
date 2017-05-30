@@ -87,12 +87,6 @@ $ABSOLUTE_PATH/check_pkg_status_and_install.sh gnome-terminal
 # install rosbridge
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-rosbridge-server
 
-# install turtlebot libraries
-$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
-
-# install (SD-Robot-Vision / ua_ros_p3dx) libraries for ./rss_git/contrib/p3dx_gazebo_mod
-$ABSOLUTE_PATH/install_p3dx_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
-
 # set up catkin workspace
 $ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
@@ -104,6 +98,12 @@ $ABSOLUTE_PATH/install_MobileSim.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install python WebSocket library (reference: https://ws4py.readthedocs.org/en/latest/sources/install/ )
 $ABSOLUTE_PATH/install_ws4py.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+
+# install (SD-Robot-Vision / ua_ros_p3dx) libraries for ./rss_git/contrib/p3dx_gazebo_mod
+$ABSOLUTE_PATH/install_p3dx_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+
+# install turtlebot libraries
+$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install UWSim stuff
 #$ABSOLUTE_PATH/install_uwsim_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE

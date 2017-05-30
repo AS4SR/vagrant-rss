@@ -95,8 +95,6 @@ fi
 if [ "$FORCE" == "-f" ] || [ $ARIA_FOUND -eq 0 ]
 then
     ARCH_NUM=`uname -m`
-    echo "UCODENAME=$UCODENAME"
-    echo "ARCH_NUM=$ARCH_NUM"
     if [ $UCODENAME == "trusty" ]; then # Ubuntu 14.04 LTS
         if [ "$ARCH_NUM" == "x86_64" ]; then # 64-bit arch
             wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_amd64.deb
