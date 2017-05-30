@@ -55,7 +55,8 @@ fi
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
 $ABSOLUTE_PATH/apt_upd_sys.sh
 
-sudo apt-get -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install python WebSocket library (reference: https://ws4py.readthedocs.org/en/latest/sources/install/ )
 mkdir -p ~/initdeps/rosbridgeclient

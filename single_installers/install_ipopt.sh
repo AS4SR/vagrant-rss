@@ -74,18 +74,17 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install python libraries for deliberative/psulu_picard (doxygen installed above)
-sudo apt-get -y install gcc g++ gfortran subversion patch wget
-#sudo apt-get -y install gfortran
-sudo apt-get -y install doxygen
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh gcc g++ gfortran subversion patch wget
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh doxygen
 # you also need to get the 3.11.4 version for Ubuntu 14.04 from the repo, otherwise you will get:
 # "ipopt: error while loading shared libraries: libipoptamplinterface.so.1: cannot open shared object file: No such file or directory"
 # when you try to run "ipopt -v" to check the version (missing libraries, and yes this is weird...)
 # (and yes, even installing the Ubuntu repo version afterwards solves the error message issue, so weird...)
-sudo apt-get -y install coinor-libipopt-dev
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh coinor-libipopt-dev
 
 # the above installs version 3.11.9-2.1 of coinor-libipopt-dev under Ubuntu 16.04 and gives the library error again when checking to see if it loads successfully (it doesn't)
 

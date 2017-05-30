@@ -45,7 +45,8 @@ fi
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
 $ABSOLUTE_PATH/apt_upd_sys.sh
 
-sudo apt-get -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install deps for MobileSim and MobileSim (references: http://robots.mobilerobots.com/wiki/MobileSim and http://robots.mobilerobots.com/MobileSim/download/current/README.html )
 if [ $MOBILESIM_FOUND -eq 0 ]
@@ -55,16 +56,18 @@ then
     
     # If you are running Ubuntu 14.04 64-bit, install these packages first to resolve dependencies, just in case (these are useful for Matlab fonts and such, too)
     if [ $UCODENAME == "trusty" ]; then
-        sudo apt -y install lib32z1 lib32ncurses5 lib32bz2-1.0 xfonts-100dpi
+        $ABSOLUTE_PATH/check_pkg_status_and_install.sh lib32z1 lib32ncurses5 lib32bz2-1.0 xfonts-100dpi
     elif [ $UCODENAME == "xenial" ]; then
         # requires GTK 2.6+ and libstdc++ 2.2 for libc6 ??
-        sudo apt -y install lib32z1 lib32ncurses5 lib32stdc++6 xfonts-100dpi # ia32-libs is replaced by the first two
+        # ia32-libs is replaced by the first two
+        $ABSOLUTE_PATH/check_pkg_status_and_install.sh lib32z1 lib32ncurses5 lib32stdc++6 xfonts-100dpi
         sudo dpkg --add-architecture i386
         sudo apt -y update
-        sudo apt -y install libbz2-1.0:i386
+        #sudo apt -y install libbz2-1.0:i386
+        $ABSOLUTE_PATH/check_pkg_status_and_install.sh libbz2-1.0:i386
     fi
     
-    sudo apt-get -y install wget
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget
     ARCH_NUM=`uname -m` # gives x86_64 vs. i386
     if [ $ARCH_NUM == "x86_64" ]; then
         ARCH_NUM="amd64"

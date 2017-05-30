@@ -51,21 +51,21 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-#mkdir -p initdeps
-#cd initdeps
+#mkdir -p ~/initdeps
+#cd ~/initdeps
 
 cd $WORKSPACEDIR/src
 if [ "$ROSVERSION" == "indigo" ]; then
-    sudo apt -y install ros-$ROSVERSION-hector-quadrotor-demo
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-hector-quadrotor-demo
 elif [ "$ROSVERSION" == "jade" ]; then # jade is untested
-    sudo apt -y install ros-$ROSVERSION-hector-quadrotor-demo
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-hector-quadrotor-demo
 elif [ "$ROSVERSION" == "kinetic" ]; then
     #sudo apt-get -y install ros-kinetic-hector-quadrotor-demo
     #sudo apt-get -y install ros-kinetic-hector-quadrotor-description ros-kinetic-hector-quadrotor-gazebo ros-kinetic-hector-quadrotor-teleop ros-kinetic-hector-quadrotor-gazebo-plugins
-    sudo apt -y install ros-$ROSVERSION-hector-localization ros-$ROSVERSION-hector-gazebo ros-$ROSVERSION-hector-models ros-$ROSVERSION-hector-slam
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-hector-localization ros-$ROSVERSION-hector-gazebo ros-$ROSVERSION-hector-models ros-$ROSVERSION-hector-slam
     
     # keyboard control interfaces
-    sudo apt -y install ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-keyboard
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-keyboard
 
     # rosinstall use:
     rosinstall $WORKSPACEDIR/src /opt/ros/kinetic https://raw.githubusercontent.com/AS4SR/hector_quadrotor/kinetic-devel/tutorials.rosinstall
@@ -74,7 +74,7 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     #git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor.git
     # run the hector_quadrotor.rosinstall file (see: http://wiki.ros.org/rosinstall
     #                                                http://answers.ros.org/question/9213/how-exactly-does-rosinstall-work/ )
-    #sudo apt-get -y install python-rosinstall
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-rosinstall
     #rosinstall . hector_quadrotor.rosinstall # <-- this has issues with . as given directory... maybe supposed to be just that file run at src??
 
     # from the hector_quadrotor.rosinstall file:
@@ -86,16 +86,16 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     #git clone -b catkin https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
 
     # hector_localization/hector_pose_estimation_core requires geographic_msgs
-    sudo apt -y install ros-$ROSVERSION-geographic-msgs
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-geographic-msgs
     # hector_quadrotor/hector_quadrotor_interface requires hardware_interface (part of ros_control)
-    sudo apt -y install ros-$ROSVERSION-hardware-interface
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-hardware-interface
     # hector_quadrotor/hector_quadrotor_interface requires controller_interface... (part of ros_control)
-    sudo apt -y install ros-$ROSVERSION-ros-control
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control
     # hector_quadrotor/hector_quadrotor_controller_gazebo requires gazebo-ros-control
-    sudo apt -y install ros-$ROSVERSION-gazebo-ros-control
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros-control
 
     # not sure if requires gazebo7 build from scratch...
-    #sudo apt-get -y install mercurial meld
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh mercurial meld
     #cd $WORKSPACEDIR
     #hg clone https://bitbucket.org/osrf/gazebo gazebo
     #cd gazebo

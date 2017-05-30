@@ -50,7 +50,8 @@ fi
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
 $ABSOLUTE_PATH/apt_upd_sys.sh
 
-sudo apt-get -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 #
 # install ROS indigo OR jade OR kinetic (for "ubuntu/trusty64" box)
@@ -61,13 +62,14 @@ if [ $ROSVERSION_INSTALLED -eq 0 ]; then # we need to install ROS
     sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
     sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
     sudo apt-get -y update
-    sudo apt-get -y install ros-$ROSVERSION-desktop-full # will not hurt anything if preinstalled
+    
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-desktop-full # will not hurt anything if preinstalled
     # if rosdep sources file list has -not- already been initialized:
     if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then # rosdep init this
         sudo rosdep init
         su - $SCRIPTUSER -c "rosdep update;"
     fi
-    sudo apt-get -y install python-rosinstall
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh python-rosinstall
 fi
 
 echo "End of install_appropriate_ros_version.sh script!"

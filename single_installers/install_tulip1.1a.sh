@@ -70,8 +70,8 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install glpk and cvxopt:
 #/vagrant/single_installers/install_glpk_cvxopt.sh $FORCE
@@ -90,8 +90,11 @@ cd ~/initdeps
 #
 # install tulip-control v1.1a system-wide
 #
-sudo apt-get -y install wget curl # for wget and possible curl use below
-sudo apt-get -y install default-jre default-jdk
+
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
+
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh install default-jre default-jdk
 
 #polytope 0.1.1 doesn't play nice with tulip-1.1a
 #polytope 0.1.0 plays nice with tulip-1.1a

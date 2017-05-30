@@ -56,7 +56,8 @@ source $ABSOLUTE_PATH/get_rv_su_wd_f.sh "$@"
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
 $ABSOLUTE_PATH/apt_upd_sys.sh
 
-sudo apt-get -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install ROS indigo OR jade OR kinetic (for "ubuntu/trusty64" box)
 $ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE
@@ -81,10 +82,10 @@ then
 fi
 
 # install gnome-terminal for multiscript*.py runs
-sudo apt-get -y install gnome-terminal
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh gnome-terminal
 
 # install rosbridge
-sudo apt-get -y install ros-$ROSVERSION-rosbridge-server
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-rosbridge-server
 
 # install turtlebot libraries
 $ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORSPACEDIR $FORCE

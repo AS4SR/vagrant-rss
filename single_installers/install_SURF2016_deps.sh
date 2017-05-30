@@ -72,7 +72,8 @@ fi
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
 $ABSOLUTE_PATH/apt_upd_sys.sh
 
-sudo apt-get -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # for Sandra Liu, SURF 2016
 
@@ -116,9 +117,9 @@ sudo chmod a+rw /dev/ttyACM0
 # other deps asked for by Ioannis and/or Sandra:
 #
 
-sudo apt-get -y install geda
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh geda
 
-#sudo apt-get -y install atom
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh atom
 
 mkdir -p ~/initdeps
 cd ~/initdeps
@@ -132,9 +133,9 @@ if [ ! -f atom-amd64.deb ]; then
 fi
 sudo dpkg --install atom-amd64.deb
 
-sudo apt-get -y install build-essential libsqlite3-dev libreadline-dev libncurses5-dev libssl-dev libbz2-dev libgdbm-dev tk-dev
-sudo apt-get -y install gcc-avr binutils-avr gdb-avr avr-libc avrdude
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh build-essential libsqlite3-dev libreadline-dev libncurses5-dev libssl-dev libbz2-dev libgdbm-dev tk-dev
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh gcc-avr binutils-avr gdb-avr avr-libc avrdude
 
-sudo apt-get -y install screen
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh screen
 
 echo "End of install_SURF2016_deps.sh script!"

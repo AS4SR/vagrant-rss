@@ -58,11 +58,11 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install python libraries for Michele Colledanchise's behavioral tree stuff:
-sudo apt-get -y install libgeos-dev # Geometry Engine Open Source (GEOS) needed for shapely
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh libgeos-dev # Geometry Engine Open Source (GEOS) needed for shapely
 sudo pip install shapely
 if [ "$FORCE" == "-f" ]
 then

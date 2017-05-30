@@ -123,8 +123,8 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install glpk and cvxopt:
 #/vagrant/single_installers/install_glpk_cvxopt.sh $FORCE
@@ -133,15 +133,17 @@ $ABSOLUTE_PATH/install_glpk_cvxopt.sh $FORCE
 # back to compilation/install directory (/root/initdeps)
 cd ~/initdeps
 
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
+
 # install OMPL libraries (cvxopt and glpk already installed above)
-sudo apt-get -y install wget curl # for wget and possible curl use below
-sudo apt-get -y install software-properties-common # for add-apt-repository
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh software-properties-common # for add-apt-repository
 sudo add-apt-repository -y ppa:libccd-debs/ppa # libccd-dev requires ppa
 sudo apt-get -y update # update to include new ppa repo list(s)
-sudo apt-get -y install libboost-all-dev cmake libccd-dev python-dev python-qt4-dev python-qt4-gl python-opengl freeglut3-dev libassimp-dev libeigen3-dev libode-dev doxygen graphviz
-#sudo apt-get -y install libompl-dev
-sudo apt-get -y install texlive-fonts-recommended # required for 'make doc' not to hang
-sudo apt-get -y install python-pip
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh libboost-all-dev cmake libccd-dev python-dev python-qt4-dev python-qt4-gl python-opengl freeglut3-dev libassimp-dev libeigen3-dev libode-dev doxygen graphviz
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh libompl-dev
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh texlive-fonts-recommended # required for 'make doc' not to hang
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-pip
 sudo pip install PyOpenGL-accelerate
 # when make update_bindings, it also looks for PY_FLASK and PY_CELERY(?), so install these, too?
 sudo pip install flask

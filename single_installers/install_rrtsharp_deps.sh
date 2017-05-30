@@ -59,24 +59,25 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
-sudo apt -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install eclipse for development environment for Oktay's RRT# (RRT-sharp) planner
-sudo apt -y install eclipse-platform
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh eclipse-platform
 
 # install dependencies for Ravi's ROS-native wrapper for the RRT# code (service call)
-sudo apt -y install gcc g++ patch wget
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh gcc g++ patch wget
 
 # C++ Armadillo library: http://arma.sourceforge.net/download.html
 if [ $UCODENAME == "trusty" ]; then
-    sudo apt -y install cmake libopenblas-dev liblapack-dev libatlas-dev libarpack2-dev libsuperlu3-dev # libsuperlu-dev # libarpack-dev
-    sudo apt -y install libarmadillo-dev # installs 4.200.0, not 6.600.5 latest
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh cmake libopenblas-dev liblapack-dev libatlas-dev libarpack2-dev libsuperlu3-dev # libsuperlu-dev # libarpack-dev
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh libarmadillo-dev # installs 4.200.0, not 6.600.5 latest
 elif [ $UCODENAME == "xenial" ]; then
-    sudo apt -y install cmake libopenblas-dev liblapack-dev libatlas-dev libarpack2-dev libsuperlu-dev # libarpack-dev
-    sudo apt -y install libarmadillo-dev # installs 4.200.0 on 14.04 trusty, not $ARMA_VER latest
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh cmake libopenblas-dev liblapack-dev libatlas-dev libarpack2-dev libsuperlu-dev # libarpack-dev
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh libarmadillo-dev # installs 4.200.0 on 14.04 trusty, not $ARMA_VER latest
 fi
 
 cd ~/initdeps

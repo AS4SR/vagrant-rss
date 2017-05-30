@@ -74,14 +74,15 @@ fi
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
 $ABSOLUTE_PATH/apt_upd_sys.sh
 
-sudo apt-get -y install wget curl # for wget and possible curl use below
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install libAria (performing this step this way allows us to skip the problematic rosdep step that would require uninstallation of libAria via apt-get prior to the rosdep command)
 # start in the root directory (if "sudo su" then is "/root")
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 # references:
 # http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA
 # http://robots.mobilerobots.com/wiki/Aria

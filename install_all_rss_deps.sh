@@ -35,14 +35,13 @@ source $ABSOLUTE_PATH/single_installers/get_rv_su_wd_f.sh "$@"
 #
 
 # update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
-sudo apt-get -y update
-sudo apt-get -y upgrade
+$ABSOLUTE_PATH/single_installers/apt_upd_sys.sh
 
 # start in the root directory (if "sudo su" then is "/root")
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install tulip-control v1.1a system-wide
 #$ABSOLUTE_PATH/vagrant/single_installers/install_tulip1.1a.sh $FORCE
@@ -50,9 +49,10 @@ cd initdeps
 $ABSOLUTE_PATH/single_installers/install_tulip1.2.0.sh $FORCE
 
 # install recommended software for python development (python-pip already installed above)
-sudo apt-get -y install spyder geany python-dev build-essential dos2unix
+$ABSOLUTE_PATH/single_installers/check_pkg_status_and_install.sh spyder geany python-dev build-essential dos2unix
 
 # install polytope library -- should be installed via tulip-control installer
+#:
 
 cd ~/initdeps
 

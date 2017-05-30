@@ -70,8 +70,8 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install glpk and cvxopt:
 #/vagrant/single_installers/install_glpk_cvxopt.sh $FORCE
@@ -87,11 +87,13 @@ $ABSOLUTE_PATH/install_gr1c.sh $FORCE
 # back to compilation/install directory (/root/initdeps)
 cd ~/initdeps
 
+# for wget and possible curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
+
 # install tulip-control v1.1a system-wide
-sudo apt-get -y install wget curl # for wget and possible curl use below
-sudo apt-get -y install default-jre default-jdk
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh default-jre default-jdk
 #note that tulip-1.2.0 does not try and install newest version of polytope (0.1.1) from PyPi automatically if an older version exists
-sudo apt-get -y install python-numpy python-scipy python-cvxopt python-networkx python-pip
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-numpy python-scipy python-cvxopt python-networkx python-pip
 #sudo pip install polytope # won't force an upgrade if not installed before # current version in repo (0.1.1) has issues with numpy >= 1.10 (because of version string parsing in quickhull.py); note that polytope won't work properly with numpy <=1.5.9 (unique1d() instead of unique())
 sudo pip install --upgrade pip
 sudo pip install --upgrade numpy

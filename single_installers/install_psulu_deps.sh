@@ -49,15 +49,15 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-#mkdir -p initdeps
-#cd initdeps
+#mkdir -p ~/initdeps
+#cd ~/initdeps
 
 # install Matlab toolboxes for deliberative/psulu-jpl-matlab
 # --> to be added! (lpsolve or gurobi or cplex, yalmip, Matlab-Ros-Interface)
 # see: https://docs.google.com/document/d/1VlQE635KTaDyKJeF1kbbQNOqq5Df3gCpgYcoYGBTKTg/edit#heading=h.7efxum6agk2e
 
 # install python libraries for deliberative/pSulu-jpl-python:
-sudo apt-get -y install python-mpmath python-pip
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-mpmath python-pip
 sudo pip install pulp
 if [ "$FORCE" == "-f" ]
 then

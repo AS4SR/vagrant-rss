@@ -69,20 +69,20 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install gr1c:
-sudo apt-get -y install curl # for curl use below
-sudo apt-get -y install python-numpy python-pyparsing python-scipy python-cvxopt python-networkx python-numpy-doc python-matplotlib python-matplotlib-data python-matplotlib-doc python-pydot graphviz graphviz-doc python-pygraphviz python-scitools
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh curl # for curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-numpy python-pyparsing python-scipy python-cvxopt python-networkx python-numpy-doc python-matplotlib python-matplotlib-data python-matplotlib-doc python-pydot graphviz graphviz-doc python-pygraphviz python-scitools
 if [ $UCODENAME == "trusty" ]; then
-    sudo apt-get -y install python-networkx-doc
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh python-networkx-doc
 elif [ $UCODENAME == "xenial" ]; then # not installed / name wrong on 16.04: python-networkx-doc
     :
 fi
-sudo apt-get -y install python-dev build-essential python-pip ipython ipython-notebook python-pandas python-sympy python-nose libblas-dev liblapack-dev gfortran python-glpk glpk-utils libglpk-dev libglpk36 swig libgmp3-dev
-sudo apt-get -y install bison flex
-sudo apt-get -y install default-jre
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-dev build-essential python-pip ipython ipython-notebook python-pandas python-sympy python-nose libblas-dev liblapack-dev gfortran python-glpk glpk-utils libglpk-dev libglpk36 swig libgmp3-dev
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh bison flex
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh default-jre
 gpg --keyserver pgp.mit.edu --recv-keys 03B40F63
 CUDDVERSION=2.5.0
 GR1CVERSION=0.10.1

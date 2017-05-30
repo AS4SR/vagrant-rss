@@ -50,17 +50,16 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-#mkdir -p initdeps
-#cd initdeps
+#mkdir -p ~/initdeps
+#cd ~/initdeps
 
 cd $WORKSPACEDIR/src
 if [ "$ROSVERSION" == "indigo" ]; then
-    #sudo apt -y install ros-$ROSVERSION-SOMETHING
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-SOMETHING
 elif [ "$ROSVERSION" == "jade" ]; then # jade is untested
-    #sudo apt -y install ros-$ROSVERSION-SOMETHING
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-SOMETHING
 elif [ "$ROSVERSION" == "kinetic" ]; then
-    #sudo apt -y install ros-kinetic-SOMETHING
-    #sudo apt -y install ros-kinetic-SOMETHING
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-SOMETHING
 
     # kinetic from source:
     #git clone -b kinetic-devel https://github.com/SOMETHING/SOMETHING.git

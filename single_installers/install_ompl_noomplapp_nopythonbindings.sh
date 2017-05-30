@@ -70,12 +70,12 @@ cd ~
 # of Ubuntu 14.04 (Trusty), 15.10 (Wily), and 16.04 (Xenial)."
 
 # Alternately, if the source code and/or Python bindings and/or GUI/app aren't needed...
-sudo apt-get -y install libompl-dev ompl-demos
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh libompl-dev ompl-demos
 
 # Alternately-alternately, if you want the ROS MoveIt! version and have already installed a version of ROS...
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt update
-sudo apt -y install ros-`rosversion -d`-ompl
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-`rosversion -d`-ompl
 
 echo "End of install_noomplapp_nopythonbindings.sh script!"

@@ -49,9 +49,9 @@ git clone https://github.com/CRUMBproject/ROS.git
 # crumb_control requires arbotix_python
 git clone https://github.com/vanadiumlabs/arbotix_ros.git
 # roboticsgroup_gazebo_plugins requires control_toolbox
-sudo apt-get -y install ros-$ROSVERSION-control-toolbox
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-control-toolbox
 # crumb_gazebo/src/led.cpp requires kobuki_msgs/Led.h
-sudo apt-get -y install ros-$ROSVERSION-kobuki-msgs
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-msgs
 
 if [ "$ROSVERSION" == "indigo" ]; then
     echo "No changes made in indigo before compile..."

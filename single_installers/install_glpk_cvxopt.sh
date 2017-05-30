@@ -84,28 +84,29 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # start in the /root directory
 cd ~
 # make and move into directory for holding compilation files + downloads
-mkdir -p initdeps
-cd initdeps
+mkdir -p ~/initdeps
+cd ~/initdeps
 
 # install glpk and cvxopt:
-sudo apt-get -y install curl # for curl use below
-sudo apt-get -y install python-numpy python-pyparsing python-scipy python-cvxopt python-networkx python-numpy-doc python-matplotlib python-matplotlib-data python-matplotlib-doc python-pydot graphviz graphviz-doc python-pygraphviz python-scitools
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh curl # for curl use below
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-numpy python-pyparsing python-scipy python-cvxopt python-networkx python-numpy-doc python-matplotlib python-matplotlib-data python-matplotlib-doc python-pydot graphviz graphviz-doc python-pygraphviz python-scitools
+
 if [ $UCODENAME == "trusty" ]; then
-    sudo apt-get -y install python-networkx-doc
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh python-networkx-doc
 elif [ $UCODENAME == "xenial" ]; then # not installed / name wrong on 16.04: python-networkx-doc
     :
 fi
-sudo apt-get -y install python-dev build-essential python-pip ipython ipython-notebook python-pandas python-sympy python-nose libblas-dev liblapack-dev gfortran python-glpk glpk-utils libglpk-dev libglpk36 swig libgmp3-dev
-sudo apt-get -y install python-ply
-#sudo apt-get -y install python-pip python-nose
-#sudo apt-get -y install python-numpy python-networkx python-scipy python-ply python-matplotlib
-#sudo apt-get -y install python-pydot
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-dev build-essential python-pip ipython ipython-notebook python-pandas python-sympy python-nose libblas-dev liblapack-dev gfortran python-glpk glpk-utils libglpk-dev libglpk36 swig libgmp3-dev
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-ply
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-pip python-nose
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-numpy python-networkx python-scipy python-ply python-matplotlib
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh python-pydot
 if [ "$FORCE" == "-f" ] || [ $GLPK_FOUND -eq 0 ]
 then
-    sudo apt-get -y install libglpk-dev
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh libglpk-dev
 fi
-sudo apt-get -y install bison flex
-sudo apt-get -y install default-jre
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh bison flex
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh default-jre
 if [ "$FORCE" == "-f" ] || [ $CVXOPT_FOUND -eq 0 ]
 then
     # if need to force, then remove old directory first
