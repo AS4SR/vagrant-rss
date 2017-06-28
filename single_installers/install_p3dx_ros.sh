@@ -61,7 +61,9 @@ if [ "$FORCE" == "-f" ]; then
     rm -rf PioneerModel
 fi
 if [ ! -d PioneerModel ]; then
-    sudo -u $SCRIPTUSER git clone https://github.com/SD-Robot-Vision/PioneerModel.git
+    #sudo -u $SCRIPTUSER git clone https://github.com/SD-Robot-Vision/PioneerModel.git
+    #sudo -u $SCRIPTUSER git clone https://github.com/cmcghan/PioneerModel.git
+    sudo -u $SCRIPTUSER git clone https://github.com/AS4SR/PioneerModel.git
 fi
 # if need to force, then remove old directory first
 if [ "$FORCE" == "-f" ]; then
