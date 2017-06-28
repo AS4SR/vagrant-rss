@@ -1,7 +1,7 @@
 # Emacs, this is in -*- ruby -*-
 # Copyright by California Institute of Technology, University of Cincinnati
 # All rights reserved. See LICENSE file at:
-# https://github.com/cmcghan/vagrant-rss
+# https://github.com/AS4SR/vagrant-rss
 #
 # ---- REQUIREMENTS ----
 #
@@ -21,7 +21,7 @@
 # in the VM.
 #
 # The intended usage is:
-#   git clone -b ubuntu-16.04-xenial https://github.com/cmcghan/vagrant-rss.git
+#   git clone -b ubuntu-16.04-xenial https://github.com/AS4SR/vagrant-rss.git
 #   cd vagrant-rss
 #   cp Vagrantfile.kinetic Vagrantfile
 #   vagrant box add ubuntu/xenial64

@@ -30,7 +30,7 @@ Native Ubuntu 16.04 install:
 Note that these install scripts (install_deps.sh, and the scripts in the single_installers directory) can be used separately on a native Ubuntu 14.04 install. To do so, try:
 
     mkdir -p ~/git_pulls && cd ~/git_pulls
-    git clone https://github.com/cmcghan/vagrant-rss.git
+    git clone https://github.com/AS4SR/vagrant-rss.git
     cd vagrant-rss
     sudo su
     ./install_all_rss_deps.sh ROSVERSION SCRIPTUSER
@@ -58,7 +58,7 @@ If you want to do a local (somewhat sandboxed) install instead of a system-wide 
     cd ~/virtualenvironment
     source activate # to enter the virtual environment
     mkdir -p ~/virtualenvironment/git_pulls && cd ~/virtualenvironment/git_pulls
-    git clone https://github.com/cmcghan/vagrant-rss.git
+    git clone https://github.com/AS4SR/vagrant-rss.git
     cd vagrant-rss
     ./install_all_rss_deps.sh ROSVERSION SCRIPTUSER
     # once everything you want is installed, do stuff!
@@ -73,7 +73,7 @@ Note that these install scripts (install_deps.sh, and the scripts in the single_
 
 where **SCRIPTUSER** should be replaced with the name of your user account (e.g., **vagrant** if your username is vagrant and you want to set up the ROS catkin workspace inside your directory), and **ROSVERSION** is the ROS distro to install (either **indigo** or **jade**).
 
-Alternately, you may want to use the original RSS script. If so, use `sudo git clone -b master https://github.com/cmcghan/vagrant-rss.git /vagrant` instead of the current kinetic branch.
+Alternately, you may want to use the original RSS script. If so, use `sudo git clone -b master https://github.com/AS4SR/vagrant-rss.git /vagrant` instead of the current kinetic branch.
 
 Vagrantbox Installation Dependencies
 ====================================
@@ -85,8 +85,8 @@ Install VirtualBox and Vagrant on your machine first before attempting to use th
 Optional install:
 * Git: https://git-scm.com/downloads
  * note that you can download and unpack the repo manually if you don't want to install git to your main O/S environment
- * https://github.com/cmcghan/vagrant-rss/archive/master.zip
- * https://github.com/cmcghan/vagrant-rss/archive/ubuntu-16.04-xenial.zip
+ * https://github.com/AS4SR/vagrant-rss/archive/master.zip
+ * https://github.com/AS4SR/vagrant-rss/archive/ubuntu-16.04-xenial.zip
 
 Requirements, Vagratnbox Installation and Use
 =============================================
@@ -110,7 +110,7 @@ Note that the default vagrantfile Vagrantfile is a copy of Vagrantfile.indigo, t
 
 The intended usage is:
 
-    git clone https://github.com/cmcghan/vagrant-rss.git
+    git clone https://github.com/AS4SR/vagrant-rss.git
     cd vagrant-rss
     cp Vagrantfile.kinetic Vagrantfile
     vagrant box add ubuntu/xenial64

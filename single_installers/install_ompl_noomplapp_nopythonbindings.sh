@@ -1,7 +1,7 @@
 #!/bin/bash -e
 # Copyright by California Institute of Technology, University of Cincinnati
 # All rights reserved. See LICENSE file at:
-# https://github.com/cmcghan/vagrant-rss
+# https://github.com/AS4SR/vagrant-rss
 
 echo "Start of install_ompl_noomplapp_nopythonbindings.sh script!"
 echo "input arguments: [-f]"
