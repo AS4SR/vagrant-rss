@@ -4,9 +4,7 @@
 # https://github.com/AS4SR/vagrant-rss
 
 echo "Start of install_ompl_noomplapp_nopythonbindings.sh script!"
-echo "input arguments: [-f]"
-echo "(note: optional input arguments in [])"
-echo "-f sets FORCE=-f and will force a (re)install of all compiled-from-source components."
+#echo "input arguments: ROSVERSION [SCRIPTUSER] [WORKSPACEDIR] [-f]"
 
 #
 # find path of this-script-being-run
@@ -17,16 +15,11 @@ ABSOLUTE_PATH="`( cd \"$RELATIVE_PATH\" && pwd )`"
 echo "PATH of current script ($0) is: $ABSOLUTE_PATH"
 
 #
-# INPUT ARGUMENT PARSING:
+# parse input vars (set to appropriate vars or default vars)
 #
+source $ABSOLUTE_PATH/get_rv_su_wd_f.sh "$@"
+# when source'd, sets these vars at this level: ROSVERSION SCRIPTUSER WORKSPACEDIR FORCE
 
-# get -f (force) if given
-if [ $# -eq 1 ] && [ "$1" == "-f" ]; then
-    echo "-f (force) commandline argument given. Forcing install of all compiled-from-source components."
-    FORCE=$1
-else
-    FORCE=
-fi
 
 #
 # check for installation
@@ -73,9 +66,9 @@ cd ~
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh libompl-dev ompl-demos
 
 # Alternately-alternately, if you want the ROS MoveIt! version and have already installed a version of ROS...
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
-wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
-sudo apt update
-$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-`rosversion -d`-ompl
+#sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
+#wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+#sudo apt update
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ompl
 
 echo "End of install_noomplapp_nopythonbindings.sh script!"

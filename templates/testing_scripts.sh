@@ -93,7 +93,7 @@ echo " "
 # install_ipopt.sh from inside install_psulu_deps.sh # ipopt isn't installing correctly under 16.04 currently
 # MC_behavior_tree isn't installing correctly under 16.04 currently
 # install_glpk_cvxopt.sh from inside install_ompl.sh # install_ompl.sh untested under Ubuntu 16.04
-scriptsarray2=(install_ipopt.sh install_psulu_deps.sh install_MC_behavior_tree.sh install_rrtsharp_deps.sh install_pyyaml.sh install_ompl.sh install_ompl_noomplapp_nopythonbindings.sh)
+scriptsarray2=(install_ipopt.sh install_psulu_deps.sh install_MC_behavior_tree.sh install_rrtsharp_deps.sh install_pyyaml.sh install_ompl.sh)
 for i in ${scriptsarray2[@]}; do
     echo "trying $i..."
     $ABSOLUTE_PATH/single_installers/$i $FORCE
@@ -102,6 +102,13 @@ for i in ${scriptsarray2[@]}; do
     echo " "
     echo " "
 done
+
+echo "trying install_ompl_noomplapp_nopythonbindings.sh..."
+$ABSOLUTE_PATH/single_installers/install_ompl_noomplapp_nopythonbindings.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+echo "done trying install_ompl_noomplapp_nopythonbindings.sh..."
+read -rs -p "Press any key to continue..." -n 1 # reference: https://ss64.com/bash/read.html
+echo " "
+echo " "
 
 # example of arrays in bash: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_10_02.html
 scriptsarray3=(install_tensorflow0.8.0.sh)

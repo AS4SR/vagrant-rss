@@ -70,7 +70,6 @@ sudo chown -R $SCRIPTUSER:$SCRIPTUSER $WORKSPACEDIR
 # install ROSARIA
 # install deps for MobileSim and MobileSim
 # install python WebSocket library
-#/vagrant/single_installers/install_rosstuff_setup_catkinworkspace.sh $ROSVERSION $SCRIPTUSER $FORCE
 $ABSOLUTE_PATH/single_installers/install_rosstuff_setup_catkinworkspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # OMPL install moved to bottom of file due to possible installation issues under some circumstances
@@ -88,14 +87,12 @@ $ABSOLUTE_PATH/single_installers/install_rrtsharp_deps.sh $FORCE
 $ABSOLUTE_PATH/single_installers/install_pyyaml.sh $FORCE
 
 # install OMPL libraries (cvxopt and glpk already installed above)
-#/vagrant/single_installers/install_ompl.sh $FORCE
 $ABSOLUTE_PATH/single_installers/install_ompl.sh $FORCE # install_ompl.sh untested under Ubuntu 16.04
 
 # install OMPL system libraries from Debian packages -- no python bindings!
-#$ABSOLUTE_PATH/single_installers/install_ompl_noomplapp_nopythonbindings.sh
+#$ABSOLUTE_PATH/single_installers/install_ompl_noomplapp_nopythonbindings.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 # install Google TensorFlow for Ravi Kiran's machine learning work:
-#/vagrant/single_installers/install_tensorflow0.8.0.sh $SCRIPTUSER $FORCE
 $ABSOLUTE_PATH/single_installers/install_tensorflow0.8.0.sh $SCRIPTUSER $FORCE
 # note that this installs TensowFlow to a VirtualEnv session for the given $SCRIPTUSER
 # also note that the python3 install may not work / may error out...
