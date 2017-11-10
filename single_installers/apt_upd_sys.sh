@@ -9,6 +9,13 @@
 
 echo "Start of apt_upd_sys.sh script!"
 
+# make sure aptdcon exists, if not then install it to /usr/bin/aptdcon
+APTDCON_INSTALLED=`whereis aptdcon | grep -m 1 "/usr/bin/aptdcon" | wc -l`
+if [ $APTDCON_INSTALLED -lt 1 ]
+then
+    sudo apt install aptdaemon
+fi
+
 # run an 'apt update' check without sudo
 # ref: https://askubuntu.com/questions/391983/software-updates-from-terminal-without-sudo
 aptdcon --refresh

@@ -77,7 +77,8 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     fi
 
     # rosinstall use:
-    rosinstall $WORKSPACEDIR/src /opt/ros/kinetic https://raw.githubusercontent.com/AS4SR/hector_quadrotor/kinetic-devel/tutorials.rosinstall
+    #rosinstall $WORKSPACEDIR/src /opt/ros/kinetic https://raw.githubusercontent.com/AS4SR/hector_quadrotor/kinetic-devel/tutorials.rosinstall
+    su - $SCRIPTUSER -c "source /home/$SCRIPTUSER/.bashrc; rosinstall $WORKSPACEDIR/src /opt/ros/kinetic https://raw.githubusercontent.com/AS4SR/hector_quadrotor/kinetic-devel/tutorials.rosinstall;"
 
     # kinetic from source:
     #git clone -b kinetic-devel https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor.git
