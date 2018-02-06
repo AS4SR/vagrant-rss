@@ -36,22 +36,43 @@ fi
 # need the -dev libraries of gazebo installed, and gazebo-proper, so also run:
 $ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
+# need to install turtlebot libraries to make this work as well
+$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+
 # if catkin_ws workspace isn't already set up:
 if [ ! -d $WORKSPACEDIR ]; then # set up the catkin workspace
     $ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 fi
 
 
+#
+# run installation + upgrades
+#
+
+# update all packages, because "gah!" otherwise, especially for 'rosdep' stuff later
+$ABSOLUTE_PATH/apt_upd_sys.sh
+
+# install CRUMB project stuff
 
 cd $WORKSPACEDIR/src
+if [ "$FORCE" == "-f" ]; then
+    rm -rf ROS
+    rm -rf arbotix_ros
+fi
+if [ ! -d ROS ]; then
+    sudo -u $SCRIPTUSER git clone https://github.com/CRUMBproject/ROS.git # main CRUMB project
+fi
+if [ ! -d arbotix_ros ]; then
+    sudo -u $SCRIPTUSER git clone https://github.com/vanadiumlabs/arbotix_ros.git # crumb_control requires arbotix_python
+fi
 
-git clone https://github.com/CRUMBproject/ROS.git
-# crumb_control requires arbotix_python
-git clone https://github.com/vanadiumlabs/arbotix_ros.git
 # roboticsgroup_gazebo_plugins requires control_toolbox
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-control-toolbox
 # crumb_gazebo/src/led.cpp requires kobuki_msgs/Led.h
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-msgs
+# also need ros-$ROSVERSION-ros-control
+$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control
+
 
 if [ "$ROSVERSION" == "indigo" ]; then
     echo "No changes made in indigo before compile..."
