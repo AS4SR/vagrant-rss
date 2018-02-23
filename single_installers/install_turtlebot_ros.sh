@@ -113,8 +113,11 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     # packages that don't exist as of 2016-10-19:
     # ros-kinetic-moveit-full
     # see issues list: https://github.com/ros-planning/moveit/issues/18
-    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-kinetic-moveit # as of 2017-05-18, this will install almost every MoveIt! package necessary
-
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-moveit # as of 2017-05-18, this will install almost every MoveIt! package necessary
+    
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control ros-$ROSVERSION-ros-controllers # as of 2018-02-22, seems to fix the controller_manager giving warnings and not starting up (test via rosservice list | grep controller_manager)
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros ros-$ROSVERSION-gazebo-ros-control # still need to also include this to actually be able to correctly load controller_manager and talk to gazebo controller plugins though
+    
 #
 # *** mainly untested git pulls and compiles below!!! ***
 #

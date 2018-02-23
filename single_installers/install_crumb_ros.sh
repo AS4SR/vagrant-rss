@@ -70,8 +70,9 @@ fi
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-control-toolbox
 # crumb_gazebo/src/led.cpp requires kobuki_msgs/Led.h
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-msgs
-# also need ros-$ROSVERSION-ros-control
-$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control
+# also need ros-$ROSVERSION-ros-control &etc. -- but should be installed by install_turtlebot_ros script now
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control ros-$ROSVERSION-ros-controllers
+#$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros ros-$ROSVERSION-gazebo-ros-control
 
 
 if [ "$ROSVERSION" == "indigo" ]; then
