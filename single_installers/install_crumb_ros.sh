@@ -36,14 +36,13 @@ fi
 # need the -dev libraries of gazebo installed, and gazebo-proper, so also run:
 $ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
-# need to install turtlebot libraries to make this work as well
-$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
-
 # if catkin_ws workspace isn't already set up:
 if [ ! -d $WORKSPACEDIR ]; then # set up the catkin workspace
     $ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 fi
 
+# need to install turtlebot libraries to make this work as well
+$ABSOLUTE_PATH/install_turtlebot_ros.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
 
 #
 # run installation + upgrades

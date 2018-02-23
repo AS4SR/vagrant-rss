@@ -35,6 +35,19 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 # for wget and possible curl use below
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
+# if ROS isn't already installed:
+if [ ! -f /opt/ros/$ROSVERSION/setup.bash ]; then # install the appropriate version of ROS
+    $ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+fi
+
+# need the -dev libraries of gazebo installed, and gazebo-proper, so also run:
+$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+
+# if catkin_ws workspace isn't already set up:
+if [ ! -d $WORKSPACEDIR ]; then # set up the catkin workspace
+    $ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+fi
+
 # install turtlebot libraries
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-joy libboost-python-dev
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-openni2-launch

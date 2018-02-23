@@ -24,6 +24,22 @@ echo "PATH of current script ($0) is: $ABSOLUTE_PATH"
 source $ABSOLUTE_PATH/get_rv_su_wd_f.sh "$@"
 # when source'd, sets these vars at this level: ROSVERSION SCRIPTUSER WORKSPACEDIR FORCE
 
+#
+# check for installation
+#
+
+# if ROS isn't already installed:
+if [ ! -f /opt/ros/$ROSVERSION/setup.bash ]; then # install the appropriate version of ROS
+    $ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+fi
+
+# need the -dev libraries of gazebo installed, and gazebo-proper, so also run:
+$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+
+# if catkin_ws workspace isn't already set up:
+if [ ! -d $WORKSPACEDIR ]; then # set up the catkin workspace
+    $ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+fi
 
 #
 # run installation + upgrades
