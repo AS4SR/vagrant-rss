@@ -73,6 +73,44 @@ $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-msgs
 #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control ros-$ROSVERSION-ros-controllers
 #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros ros-$ROSVERSION-gazebo-ros-control
 
+# note that both the turtlebot and the CRUMBproject bot generally require the motors to be turned on prior to moving:
+# rostopic pub /mobile_base/commands/motor_power kobuki_msgs/MotorPower "state: 1"
+# (or)
+# rostopic pub /mobile_base/commands/motor_power kobuki_msgs/MotorPower "state: ON"
+
+# also note that if you run the CRUMBproject crumb_world.launch file that you need to hit the "play" button for the Gazebo simulation to start running(!!)
+
+# also-also note that some keyboard controllers are also installed as part of install_turtlebot_ros.sh
+# but that there are some differences in controlling the base of the CRUMBproject...
+# compare:
+# -- https://github.com/turtlebot/turtlebot/blob/kinetic/turtlebot_teleop/scripts/turtlebot_teleop_key
+# and
+# -- https://github.com/CRUMBproject/ROS/blob/master/crumb/crumb_gazebo/launch/crumb_world.launch
+# and note that ~cmd_vel seems to work okay for a basic turtlebot2,
+# and that the /mobile_base/commands/velocity is what is used to send commands to the turtlebot,
+# but that you have to use the cmd_vel mux'er for the CRUMBproject instead(!!)
+# (because the muxer spits out 0-0-0 vel cmds all the time for that and will override the ../velocity topic otherwise):
+# see:
+# -- http://wiki.ros.org/cmd_vel_mux
+# -- https://groups.google.com/forum/#!topic/ros-by-example/GfH3rxbiUNE
+# for linear motion forward, try:
+# rostopic pub /cmd_vel_mux/input/teleop geometry_msgs/Twist "linear:
+#  x: 0.5
+#  y: 0.0
+#  z: 0.0
+#angular:
+#  x: 0.0
+#  y: 0.0
+#  z: 0.0" 
+# for turning to the left, try:
+# rostopic pub /cmd_vel_mux/input/teleop geometry_msgs/Twist "linear:
+#  x: 0.0
+#  y: 0.0
+#  z: 0.0
+#angular:
+#  x: 0.0
+#  y: 0.0
+#  z: 0.5" 
 
 if [ "$ROSVERSION" == "indigo" ]; then
     echo "No changes made in indigo before compile..."

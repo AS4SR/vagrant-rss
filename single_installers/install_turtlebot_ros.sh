@@ -131,6 +131,28 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control ros-$ROSVERSION-ros-controllers # as of 2018-02-22, seems to fix the controller_manager giving warnings and not starting up (test via rosservice list | grep controller_manager)
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros ros-$ROSVERSION-gazebo-ros-control # still need to also include this to actually be able to correctly load controller_manager and talk to gazebo controller plugins though
     
+    #
+    # the following seem to be necessary for some movement of the base for CRUMB project, thus probably also the "plain vanilla" turtlebot as well
+    #
+
+    # need differential drive controllers for most mobile robot base models, see:
+    # http://gazebosim.org/tutorials?tut=ros_gzplugins
+    # http://wiki.ros.org/diff_drive_controller
+    # this is the top-level and sub-package controller packages, already included above:
+    #sudo apt install ros-kinetic-ros-controllers ros-kinetic-diff-drive-controller
+    # additional packages, see:
+    # -- http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation
+    # -- http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Explore%20the%20Gazebo%20world
+    sudo apt install ros-kinetic-turtlebot-rviz-launchers
+    sudo apt install ros-kinetic-kobuki-ftdi ros-kinetic-ar-track-alvar-msgs
+
+    # examples of Gazebo + turtlebot bringup are given here:
+    # -- http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Gazebo%20Bringup%20Guide
+    # -- http://sauravag.com/2016/10/how-to-setup-turtlebot-simulator-in-ros-with-gazebo/
+    # for teleoperating the turtlebot:
+    sudo apt install ros-kinetic-turtlebot-teleop
+    sudo apt install ros-kinetic-kobuki-keyop
+    
 #
 # *** mainly untested git pulls and compiles below!!! ***
 #
