@@ -63,6 +63,8 @@ if [ $UCODENAME == "trusty" ]; then # do-nothing
     : # null command
 elif [ $UCODENAME == "xenial" ]; then # do-nothing
     : # null command
+elif [ $UCODENAME == "bionic" ]; then # do-nothing
+    : # null command
 else
     echo "ERROR: Unknown Ubuntu version."
     echo "Currently, install_rosstuff_setup_catkinworkspace.sh supports Ubuntu 14.04 trusty and Ubuntu 16.04 xenial only."
@@ -91,6 +93,7 @@ if [ $# -lt 1 ]; then
     exit
 else # at least 1 (possibly 4) argument(s) at commandline...
     # check against O/S argument, kinetic does not demand support for 14.04, or indigo/jade for 16.04...
+    # ...or melodic for 14.04/16.04...
     echo "Commandline argument 1 is: $1"
     if [ $1 == "indigo" ] && [ $UCODENAME == "trusty" ]; then
         ROSVERSION="indigo"
@@ -98,6 +101,8 @@ else # at least 1 (possibly 4) argument(s) at commandline...
         ROSVERSION="jade"
     elif [ $1 == "kinetic" ] && [ $UCODENAME == "xenial" ]; then
         ROSVERSION="kinetic"
+    elif [ $1 == "melodic" ] && [ $UCODENAME == "bionic" ]; then
+        ROSVERSION="melodic"
     else
         echo "ERROR: Unknown ROS version given as commandline argument -or- ROS version does not match O/S."
         echo "Currently, install_deps.sh supports trusty with indigo and jade only, xenial with kinetic only."

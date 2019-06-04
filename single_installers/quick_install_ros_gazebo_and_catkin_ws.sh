@@ -29,12 +29,12 @@ source $ABSOLUTE_PATH/get_rv_su_wd_f.sh "$@"
 #
 
 # install ROS
-$ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER
 
 # install Gazebo
-$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION
 
 # set up catkin workspace
-$ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+$ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR
 
 echo "End of quick_install_ros_gazebo_and_catkin_ws.sh script!"

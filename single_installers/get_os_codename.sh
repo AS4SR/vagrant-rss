@@ -42,6 +42,8 @@ if [ $UCODENAME == "trusty" ]; then # do-nothing
     : # null command
 elif [ $UCODENAME == "xenial" ]; then # do-nothing
     : # null command
+elif [ $UCODENAME == "bionic" ]; then # do-nothing
+    : # null command
 else
     echo "ERROR: Unknown Ubuntu version."
     echo "Currently, install_rosstuff_setup_catkinworkspace.sh supports Ubuntu 14.04 trusty and Ubuntu 16.04 xenial only."

@@ -9,6 +9,7 @@
 
 echo "Start of install_gazebo_plus_rospkgs.sh script!"
 #echo "input arguments: ROSVERSION [SCRIPTUSER] [WORKSPACEDIR] [-f]"
+#NOTE: [SCRIPTUSER] and [WORKSPACEDIR] and [-f] are NOT used by this script!
 
 #
 # find path of this-script-being-run
@@ -56,7 +57,11 @@ elif [ "$ROSVERSION" == "jade" ]; then # install gazebo5, too
     # ...and then grab all the models from online that you want!
 elif [ "$ROSVERSION" == "kinetic" ]; then # install gazebo7, too
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh gazebo7 libgazebo7-dev
+elif [ "$ROSVERSION" == "melodic" ]; then # install gazebo9, too
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh gazebo9 libgazebo9-dev
+else
+    echo "Unknown ROS version; exiting..."
+    exit
 fi
-
 
 echo "End of install_gazebo_plus_rospkgs.sh script!"

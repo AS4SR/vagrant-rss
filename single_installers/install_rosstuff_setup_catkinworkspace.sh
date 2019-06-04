@@ -60,10 +60,10 @@ $ABSOLUTE_PATH/apt_upd_sys.sh
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh wget curl
 
 # install ROS indigo OR jade OR kinetic (for "ubuntu/trusty64" box)
-$ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_appropriate_ros_version.sh $ROSVERSION $SCRIPTUSER
 
 # install gazebo and gazebo-ros packages
-$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+$ABSOLUTE_PATH/install_gazebo_plus_rospkgs.sh $ROSVERSION
 
 # note: this will install to the home directory of user $SCRIPTUSER
 # so, if this script is called as user 'vagrant'
@@ -88,7 +88,7 @@ $ABSOLUTE_PATH/check_pkg_status_and_install.sh gnome-terminal
 $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-rosbridge-server
 
 # set up catkin workspace
-$ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE
+$ABSOLUTE_PATH/set_up_catkin_workspace.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR
 
 # install ROSARIA (reference: http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA )
 $ABSOLUTE_PATH/install_ROSARIA.sh $ROSVERSION $SCRIPTUSER $WORKSPACEDIR $FORCE

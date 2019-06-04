@@ -9,8 +9,8 @@
 
 echo "Start of install_appropriate_ros_version.sh script!"
 #echo "input arguments: ROSVERSION [SCRIPTUSER] [WORKSPACEDIR] [-f]"
+#NOTE: [WORKSPACEDIR] and [-f] are NOT used by this script!
 
-#
 # find path of this-script-being-run
 # see: http://stackoverflow.com/questions/630372/determine-the-path-of-the-executing-bash-script
 #

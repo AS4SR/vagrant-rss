@@ -9,6 +9,7 @@
 
 echo "Start of set_up_catkin_workspace.sh script!"
 #echo "input arguments: ROSVERSION [SCRIPTUSER] [WORKSPACEDIR] [-f]"
+#NOTE: [-f] is NOT used by this script!
 
 #
 # find path of this-script-being-run
