@@ -69,6 +69,8 @@ elif [ "$ROSVERSION" == "jade" ]; then
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control # for gazebo_ros_control, need transmission_interface
 elif [ "$ROSVERSION" == "kinetic" ]; then
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros-control
+elif [ "$ROSVERSION" == "melodic" ]; then
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros-control
 fi
 # then install the p3dx gazebo model from github
 cd $WORKSPACEDIR/src

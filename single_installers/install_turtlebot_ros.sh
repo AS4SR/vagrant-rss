@@ -184,6 +184,139 @@ elif [ "$ROSVERSION" == "kinetic" ]; then
     #if [ ! -d pr2_mechanism ]; then
     #sudo -u $SCRIPTUSER git clone https://github.com/pr2/pr2_mechanism.git # adding pr2_mechanism, just in case
     #fi
+elif [ "$ROSVERSION" == "melodic" ]; then # turtlebot 2 has not been ported, but turtlebot 3 exists/has-been
+
+    #
+    # Turtlebot 2
+    #
+
+
+    # all are missing!
+    # ros-$ROSVERSION-turtlebot ros-$ROSVERSION-turtlebot-interactions ros-$ROSVERSION-turtlebot-apps ros-$ROSVERSION-turtlebot-simulator ros-$ROSVERSION-turtlebot-msgs  ros-$ROSVERSION-create-description ros-$ROSVERSION-kobuki-description ros-$ROSVERSION-kobuki-node ros-$ROSVERSION-rocon-app-manager ros-$ROSVERSION-kobuki-bumper2pc ros-$ROSVERSION-turtlebot-capabilities
+
+    #
+    # the following seem to be necessary for some movement of the base for CRUMB project, thus probably also the "plain vanilla" turtlebot as well
+    #
+
+    # need differential drive controllers for most mobile robot base models, see:
+    # http://gazebosim.org/tutorials?tut=ros_gzplugins
+    # http://wiki.ros.org/diff_drive_controller
+    # this is the top-level and sub-package controller packages, already included above:
+    #sudo apt install ros-kinetic-ros-controllers ros-kinetic-diff-drive-controller
+    # additional packages, see:
+    # -- http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation
+    # -- http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Explore%20the%20Gazebo%20world
+    #sudo apt install ros-kinetic-turtlebot-rviz-launchers
+    #sudo apt install ros-kinetic-kobuki-ftdi ros-kinetic-ar-track-alvar-msgs
+
+    # examples of Gazebo + turtlebot bringup are given here:
+    # -- http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Gazebo%20Bringup%20Guide
+    # -- http://sauravag.com/2016/10/how-to-setup-turtlebot-simulator-in-ros-with-gazebo/
+    # for teleoperating the turtlebot:
+    #sudo apt install ros-kinetic-turtlebot-teleop
+    #sudo apt install ros-kinetic-kobuki-keyop
+
+
+    # *** WORK IN PROGRESS BELOW! ***
+
+    cd $WORKSPACEDIR/src
+    if [ "$FORCE" == "-f" ]; then
+        rm -rf turtlebot
+        rm -rf turtlebot_interactions
+        rm -rf turtlebot_apps
+        rm -rf turtlebot_simulator
+        rm -rf turtlebot_msgs
+        rm -rf turtlebot_create
+        rm -rf kobuki
+        rm -rf kobuki_msgs
+        rm -rf yujin_ocs
+        rm -rf yocs_msgs
+        rm -rf kobuki_core
+        rm -rf rocon_app_platform
+        rm -rf moveit_pr2
+    fi
+    if [ ! -d turtlebot ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/turtlebot/turtlebot.git #ros-melodic-turtlebot, ros-melodic-turtlebot-capabilities
+    fi
+    if [ ! -d turtlebot_interactions ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/turtlebot/turtlebot_interactions.git #ros-melodic-turtlebot-interactions
+    fi
+    if [ ! -d turtlebot_apps ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/turtlebot/turtlebot_apps.git #ros-melodic-turtlebot-apps
+    fi
+    if [ ! -d turtlebot_simulator ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/turtlebot/turtlebot_simulator.git #ros-melodic-turtlebot-simulator
+    fi
+    if [ ! -d turtlebot_msgs ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/turtlebot/turtlebot_msgs.git #ros-melodic-turtlebot-msgs
+    fi
+    if [ ! -d turtlebot_create ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/turtlebot/turtlebot_create.git #(includes) ros-melodic-create-description
+    fi
+    if [ ! -d kobuki ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/yujinrobot/kobuki.git #(includes) ros-melodic-kobuki-description, ros-melodic-kobuki-node, ros-melodic-kobuki-bumper2pc
+    fi
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ecl-core # for kobuki_keyop, need ecl_exceptions
+    #if [ ! -d kobuki_msgs ]; then
+    #    sudo -u $SCRIPTUSER git clone https://github.com/yujinrobot/kobuki_msgs.git # for kobuki_keyop, need kobuki_msgs
+    #fi
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-msgs
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-yujin-ocs # for kobuki_controller_tutorial, need yocs_controllers
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-yocs-msgs # for yocs_joyop, need yocs_msgs
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ar-track-alvar # for yocs_ar_marker_tracking, need ar_track_alvar_msgs
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-base-local-planner # for yocs_navi_toolkit, need base_local_planner
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-move-base-msgs # for yocs_navigator, need move_base_msgs
+    #if [ ! -d kobuki_core ]; then
+    #    sudo -u $SCRIPTUSER git clone https://github.com/yujinrobot/kobuki_core.git # for kobuki_auto_docking, need kobuki_dock_drive
+    #fi # *** THIS SEEMS TO HAVE ISSUES BECAUSE IS PLAIN CMAKE, WANTS catkin_make_isolated BECAUSE OF THIS ***
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-dock-drive # for kobuki_auto_docking, need kobuki_dock_drive
+    
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh libusb-dev libftdi-dev # for kobuki_ftdi, needs <usb.h> and <ftdi.h>
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ecl-mobile-robot # for kobuki_driver, need ecl_mobile_robot
+    if [ ! -d rocon_app_platform ]; then
+        sudo -u $SCRIPTUSER git clone https://github.com/robotics-in-concert/rocon_app_platform.git #ros-jade-rocon-app-manager
+    fi
+    
+    
+    
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-moveit # should include -core, -ros, -planners
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-moveit-core ros-$ROSVERSION-moveit-ros ros-$ROSVERSION-moveit-planners-ompl #ros-jade-moveit-full
+    #if [ ! -d moveit_pr2 ]; then
+    #    sudo -u $SCRIPTUSER git clone https://github.com/ros-planning/moveit_pr2.git #ros-kinetic-moveit-full
+    #fi
+    #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-pr2-mechanism-msgs ros-$ROSVERSION-pr2-controllers-msgs # for pr2_moveit_plugins, need pr2_mechanism_msgs, pr2_controllers_msgs
+
+    # *** WORK IN PROGRESS ABOVE! ***
+
+
+
+
+
+    #
+    # Turtlebot 3
+    #
+
+    # install necessary packages, see:
+    # http://emanual.robotis.com/docs/en/platform/turtlebot3/pc_setup/#install-dependent-ros-packages
+    # http://wiki.ros.org/Robots/TurtleBot
+
+    #sudo apt-get install ros-kinetic-joy ros-kinetic-teleop-twist-joy ros-kinetic-teleop-twist-keyboard ros-kinetic-laser-proc ros-kinetic-rgbd-launch ros-kinetic-depthimage-to-laserscan ros-kinetic-rosserial-arduino ros-kinetic-rosserial-python ros-kinetic-rosserial-server ros-kinetic-rosserial-client ros-kinetic-rosserial-msgs ros-kinetic-amcl ros-kinetic-map-server ros-kinetic-move-base ros-kinetic-urdf ros-kinetic-xacro ros-kinetic-compressed-image-transport ros-kinetic-rqt-image-view ros-kinetic-gmapping ros-kinetic-navigation ros-kinetic-interactive-markers
+
+    sudo apt install ros-$ROSVERSION-turtlebot3 ros-$ROSVERSION-turtlebot3-msgs ros-$ROSVERSION-turtlebot3-simulations ros-$ROSVERSION-turtlebot3-applications ros-$ROSVERSION-turtlebot3-autorace ros-$ROSVERSION-turtlebot3-description ros-$ROSVERSION-turtlebot3-gazebo ros-$ROSVERSION-hls-lfcd-lds-driver ros-$ROSVERSION-open-manipulator ros-$ROSVERSION-dynamixel-sdk 
+    
+    #sudo apt install ros-melodic-turtlebot3-deliver
+    #sudo apt install ros-$ROSVERSION-opencr
+
+
+
+    #
+    # additional packages for Turtlebot 2 & etc.
+    #
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-moveit
+    
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ros-control ros-$ROSVERSION-ros-controllers # as of 2018-02-22, seems to fix the controller_manager giving warnings and not starting up (test via rosservice list | grep controller_manager)
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-gazebo-ros ros-$ROSVERSION-gazebo-ros-control # still need to also include this to actually be able to correctly load controller_manager and talk to gazebo controller plugins though
+
 fi
 
 #now, catkin_make this bad boy! :)

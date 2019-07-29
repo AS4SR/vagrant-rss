@@ -67,7 +67,7 @@ elif [ $UCODENAME == "bionic" ]; then # do-nothing
     : # null command
 else
     echo "ERROR: Unknown Ubuntu version."
-    echo "Currently, install_rosstuff_setup_catkinworkspace.sh supports Ubuntu 14.04 trusty and Ubuntu 16.04 xenial only."
+    echo "Currently, install_rosstuff_setup_catkinworkspace.sh supports Ubuntu 14.04 trusty, Ubuntu 16.04 xenial, and Ubuntu 18.04 bionic only."
     echo "Exiting."
     exit
 fi
@@ -94,7 +94,7 @@ if [ $# -lt 1 ]; then
 else # at least 1 (possibly 4) argument(s) at commandline...
     # check against O/S argument, kinetic does not demand support for 14.04, or indigo/jade for 16.04...
     # ...or melodic for 14.04/16.04...
-    echo "Commandline argument 1 is: $1"
+    echo "Commandline argument 1 (for ROSVERSION) is: $1"
     if [ $1 == "indigo" ] && [ $UCODENAME == "trusty" ]; then
         ROSVERSION="indigo"
     elif [ $1 == "jade" ] && [ $UCODENAME == "trusty" ]; then

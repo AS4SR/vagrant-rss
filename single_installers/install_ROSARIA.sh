@@ -46,7 +46,7 @@ source $ABSOLUTE_PATH/get_rv_su_wd_f.sh "$@"
 #Maintainer: Reed Hedges <reed@mobilerobots.com>
 #Architecture: amd64
 #Source: aria
-#Version: 2.9.1+ubuntu16
+#Version: 2.9.4+ubuntu16
 #Replaces: aria, libaria-seekur
 #Provides: libarnetworking
 #Suggests: mobilesim, mobileeyes, mapper3
@@ -86,6 +86,12 @@ cd ~/initdeps
 # references:
 # http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA
 # http://robots.mobilerobots.com/wiki/Aria
+# Wayback Machine archived:
+#   https://web.archive.org/web/20161027025858/http://robots.mobilerobots.com/wiki/Aria
+#   https://web.archive.org/web/20181005213856/http://robots.mobilerobots.com/wiki/Aria
+# 2.9.1 source code available via:
+# https://web.archive.org/web/20161222013941/http://robots.mobilerobots.com/wiki/ARIA
+# https://web.archive.org/web/20161222013941/http://robots.mobilerobots.com/ARIA/download/current/ARIA-src-2.9.1.tar.gz
 
 if [ "$FORCE" == "-f" ] && [ $ARIA_FOUND -eq 1 ] # if forcing stuff, uninstall libAria before reinstalling
 then
@@ -97,22 +103,27 @@ then
     ARCH_NUM=`uname -m`
     if [ $UCODENAME == "trusty" ]; then # Ubuntu 14.04 LTS
         if [ "$ARCH_NUM" == "x86_64" ]; then # 64-bit arch
-            wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_amd64.deb
-            sudo dpkg -i libaria_2.9.1+ubuntu12_amd64.deb
+            wget https://web.archive.org/web/20170823044240/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_amd64.deb
         elif [ "$ARCH_NUM" == "i386" ]; then # 32-bit arch
-            wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_i386.deb
+            https://web.archive.org/web/20170823044732/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu12_i386.deb
             sudo dpkg -i libaria_2.9.1+ubuntu12_i386.deb
+            #wget https://web.archive.org/web/20181005213856/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.4+ubuntu12_i386.deb
+            #sudo dpkg -i libaria_2.9.4+ubuntu12_i386.deb
         else
             echo "Unknown ARCH_NUM='$ARCH_NUM'"
             exit 1
         fi
-    elif [ $UCODENAME == "xenial" ]; then # Ubuntu 16.04 LTS
+    elif [ $UCODENAME == "xenial" ] || [ $UCODENAME == "bionic" ]; then # Ubuntu 16.04 LTS , Ubuntu 18.04 LTS
         if [ "$ARCH_NUM" == "x86_64" ]; then # 64-bit arch
-            wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu16_amd64.deb
+            wget https://web.archive.org/web/20170822235240/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu16_amd64.deb
             sudo dpkg -i libaria_2.9.1+ubuntu16_amd64.deb
+            #wget https://web.archive.org/web/20181005213856/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.4+ubuntu16_amd64.deb
+            #sudo dpkg -i libaria_2.9.4+ubuntu16_amd64.deb
         elif [" $ARCH_NUM" == "i386" ]; then # 32-bit arch
-            wget http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu16_i386.deb
+            wget https://web.archive.org/web/20170823024545/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.1+ubuntu16_i386.deb
             sudo dpkg -i libaria_2.9.1+ubuntu16_i386.deb
+            #wget https://web.archive.org/web/20181005213856/http://robots.mobilerobots.com/ARIA/download/current/libaria_2.9.4+ubuntu16_i386.deb
+            #sudo dpkg -i libaria_2.9.4+ubuntu16_i386.deb
         else
             echo "Unknown ARCH_NUM='$ARCH_NUM'"
             exit 1
