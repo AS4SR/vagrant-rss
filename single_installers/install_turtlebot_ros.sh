@@ -261,6 +261,7 @@ elif [ "$ROSVERSION" == "melodic" ]; then # turtlebot 2 has not been ported, but
     #    sudo -u $SCRIPTUSER git clone https://github.com/yujinrobot/kobuki_msgs.git # for kobuki_keyop, need kobuki_msgs
     #fi
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-msgs
+    $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-kobuki-driver # for kobuki_node, need kobuki_driver
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-yujin-ocs # for kobuki_controller_tutorial, need yocs_controllers
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-yocs-msgs # for yocs_joyop, need yocs_msgs
     $ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-ar-track-alvar # for yocs_ar_marker_tracking, need ar_track_alvar_msgs
@@ -287,7 +288,7 @@ elif [ "$ROSVERSION" == "melodic" ]; then # turtlebot 2 has not been ported, but
     #$ABSOLUTE_PATH/check_pkg_status_and_install.sh ros-$ROSVERSION-pr2-mechanism-msgs ros-$ROSVERSION-pr2-controllers-msgs # for pr2_moveit_plugins, need pr2_mechanism_msgs, pr2_controllers_msgs
 
     # *** WORK IN PROGRESS ABOVE! ***
-
+    # seems to be okay now, though :)
 
 
 

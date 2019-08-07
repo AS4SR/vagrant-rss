@@ -7,6 +7,7 @@ Table of Contents
 =================
 
 * Non-Vagrantbox Use
+  * Native Ubuntu 18.04 install: (a work-in-progress currently!)
   * Native Ubuntu 16.04 install:
   * Native Ubuntu 14.04 install (deprecated):
 * Vagrantbox Installation Dependencies
@@ -28,149 +29,146 @@ Native Ubuntu 18.04 install:
 ----------------------------
 
 The scripts that have been updated to work for melodic so far include:
+    ...
 
-install_all_rssdeps.sh
-    get_rv_su_wd_f.sh
-    apt_upd_sys.sh
-    install_tulip1.2.0.sh # may require updating / newer tulip script
-        apt_upd_sys.sh
-        install_glpk_cvxopt.sh
-            get_os_codename.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_gr1c.sh
-            get_os_codename.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh            
-        check_pkg_status_and_install.sh
-    check_pkg_status_and_install.sh
-    install_rosstuff_setup_catkinworkspace.sh
-        get_rv_su_wd_f.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-        install_appropriate_ros_version.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_gazebo_plus_rospkgs.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        set_up_catkin_workspace.sh
-            get_rv_su_wd_f.sh
-        install_ROSARIA.sh
-            get_os_codename.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_MobileSim.sh # requires fixing, old website no longer online
-            get_os_codename.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_ws4py.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_p3dx_ros.sh
-            get_rv_su_wd_f.sh
-            install_appropriate_ros_version.sh # more stuff under this, see above
-            install_gazebo_plus_rospkgs.sh # more stuff under this, see above
-            set_up_catkin_workspace.sh # more stuff under this, see above
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_turtlebot_ros.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-            install_appropriate_ros_version.sh # more stuff under this, see above
-            install_gazebo_plus_rospkgs.sh # more stuff under this, see above
-            set_up_catkin_workspace.sh # more stuff under this, see above
-        #install_uwsim_ros.sh
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        #install_usarsim_ros.sh # not ready yet!
-            get_rv_su_wd_f.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        #install_crumb_ros.sh
-            get_rv_su_wd_f.sh
-            install_appropriate_ros_version.sh # more stuff under this, see above
-            install_gazebo_plus_rospkgs.sh # more stuff under this, see above
-            set_up_catkin_workspace.sh # more stuff under this, see above
-            install_turtlebot_ros.sh # more stuff under this, see above
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        install_hector_quadrotor.sh
-            get_rv_su_wd_f.sh
-            install_appropriate_ros_version.sh # more stuff under this, see above
-            install_gazebo_plus_rospkgs.sh # more stuff under this, see above
-            set_up_catkin_workspace.sh # more stuff under this, see above
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        #install_SURF2016_deps.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-        #install_widowx_ros.sh # not ready yet!
-            get_rv_su_wd_f.sh
-            install_appropriate_ros_version.sh # more stuff under this, see above
-            install_gazebo_plus_rospkgs.sh # more stuff under this, see above
-            set_up_catkin_workspace.sh # more stuff under this, see above
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-    install psulu_deps.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-        install_ipopt.sh
-            get_os_codename.sh
-            apt_upd_sys.sh
-            check_pkg_status_and_install.sh
-    install_MC_behavior_tree.sh
-        get_os_codename.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-    install_rrtsharp_deps.sh
-        get_os_codename.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-    install_pyyaml.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-    install_ompl.sh
-        apt_upd_sys.sh
-        install_glpk_cvxopt.sh # more stuff under this, see above
-        check_pkg_status_and_install.sh
-    #install_ompl_noomplapp_nopythonbindings.sh
-        get_rv_su_wd_f.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-    install_tensorflow0.8.0.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
+The "call structure" of the scripts is...:  
+install_all_rssdeps.sh  
+    get_rv_su_wd_f.sh  
+    apt_upd_sys.sh  
+    install_tulip1.2.0.sh # may require updating / newer tulip script  
+        apt_upd_sys.sh  
+        install_glpk_cvxopt.sh  
+            get_os_codename.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_gr1c.sh  
+            get_os_codename.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        check_pkg_status_and_install.sh  
+    check_pkg_status_and_install.sh  
+    install_rosstuff_setup_catkinworkspace.sh  
+        get_rv_su_wd_f.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+        install_appropriate_ros_version.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_gazebo_plus_rospkgs.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        set_up_catkin_workspace.sh  
+            get_rv_su_wd_f.sh  
+        install_ROSARIA.sh  
+            get_os_codename.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_MobileSim.sh # requires fixing, old website no longer online  
+            get_os_codename.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_ws4py.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_p3dx_ros.sh  
+            get_rv_su_wd_f.sh  
+            install_appropriate_ros_version.sh # more stuff under this, see above  
+            install_gazebo_plus_rospkgs.sh # more stuff under this, see above  
+            set_up_catkin_workspace.sh # more stuff under this, see above  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_turtlebot_ros.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+            install_appropriate_ros_version.sh # more stuff under this, see above  
+            install_gazebo_plus_rospkgs.sh # more stuff under this, see above  
+            set_up_catkin_workspace.sh # more stuff under this, see above  
+        #install_uwsim_ros.sh  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        #install_usarsim_ros.sh # not ready yet!  
+            get_rv_su_wd_f.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        #install_crumb_ros.sh  
+            get_rv_su_wd_f.sh  
+            install_appropriate_ros_version.sh # more stuff under this, see above  
+            install_gazebo_plus_rospkgs.sh # more stuff under this, see above  
+            set_up_catkin_workspace.sh # more stuff under this, see above  
+            install_turtlebot_ros.sh # more stuff under this, see above  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        install_hector_quadrotor.sh  
+            get_rv_su_wd_f.sh  
+            install_appropriate_ros_version.sh # more stuff under this, see above  
+            install_gazebo_plus_rospkgs.sh # more stuff under this, see above  
+            set_up_catkin_workspace.sh # more stuff under this, see above  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        #install_SURF2016_deps.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+        #install_widowx_ros.sh # not ready yet!  
+            get_rv_su_wd_f.sh  
+            install_appropriate_ros_version.sh # more stuff under this, see above  
+            install_gazebo_plus_rospkgs.sh # more stuff under this, see above  
+            set_up_catkin_workspace.sh # more stuff under this, see above  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+    install psulu_deps.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+        install_ipopt.sh  
+            get_os_codename.sh  
+            apt_upd_sys.sh  
+            check_pkg_status_and_install.sh  
+    install_MC_behavior_tree.sh  
+        get_os_codename.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+    install_rrtsharp_deps.sh  
+        get_os_codename.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+    install_pyyaml.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+    install_ompl.sh  
+        apt_upd_sys.sh  
+        install_glpk_cvxopt.sh # more stuff under this, see above  
+        check_pkg_status_and_install.sh  
+    #install_ompl_noomplapp_nopythonbindings.sh  
+        get_rv_su_wd_f.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+    install_tensorflow0.8.0.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
 
+install_tulip1.1a.sh  
+    apt_upd_sys.sh  
+    install_glpk_cvxopt.sh  
+        get_os_codename.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+    install_gr1c.sh  
+        get_os_codename.sh  
+        apt_upd_sys.sh  
+        check_pkg_status_and_install.sh  
+    check_pkg_status_and_install.sh  
 
-install_tulip1.1a.sh
-    apt_upd_sys.sh
-    install_glpk_cvxopt.sh
-        get_os_codename.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh
-    install_gr1c.sh
-        get_os_codename.sh
-        apt_upd_sys.sh
-        check_pkg_status_and_install.sh            
-    check_pkg_status_and_install.sh
-
-quick_install_ros_gazebo_and_catkin_ws.sh
-    get_rv_su_wd_f.sh
-    install_appropriate_ros_version.sh # more stuff under this, see above
-    install_gazebo_plus_rospkgs.sh # more stuff under this, see above
-    set_up_catkin_workspace.sh # more stuff under this, see above
-
-
-
-
+quick_install_ros_gazebo_and_catkin_ws.sh  
+    get_rv_su_wd_f.sh  
+    install_appropriate_ros_version.sh # more stuff under this, see above  
+    install_gazebo_plus_rospkgs.sh # more stuff under this, see above  
+    set_up_catkin_workspace.sh # more stuff under this, see above  
 
 
 
